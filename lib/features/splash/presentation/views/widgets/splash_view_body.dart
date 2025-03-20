@@ -37,7 +37,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(Assets.imagesLogo),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
         SlidingAnimationText(slidingAnimation: slidingAnimation),
       ],
     );
@@ -46,20 +46,20 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initSlidingAnimation() {
     animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
     );
 
     slidingAnimation = Tween(
-      begin: Offset(0, 5),
+      begin: const Offset(0, 5),
       end: Offset.zero,
     ).animate(animationController);
     animationController.forward();
   }
 
   void navigateToHome() {
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Get.to(
-        HomeView(),
+        () => const HomeView(),
         transition: Transition.fade,
         duration: kTransitionDuration,
       );

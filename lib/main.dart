@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 void main() => runApp(
   DevicePreview(
     enabled: true,
-    builder: (context) => BooklyApp(), // Wrap your app
+    builder: (context) => const BooklyApp(), // Wrap your app
   ),
 );
 
@@ -18,11 +18,12 @@ class BooklyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: kPrimaryColor),
       /* darkTheme: ThemeData.dark(), */
-      home: SplashView(),
+      home: const SplashView(),
     );
   }
 }
