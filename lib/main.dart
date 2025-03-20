@@ -20,8 +20,8 @@ class BooklyApp extends StatelessWidget {
     return GetMaterialApp(
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      theme: ThemeData.light().copyWith(scaffoldBackgroundColor: kPrimaryColor),
-      darkTheme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: kPrimaryColor),
+      /* darkTheme: ThemeData.dark(), */
       home: SplashView(),
     );
   }
