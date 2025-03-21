@@ -1,5 +1,4 @@
 import 'package:bookly_app/core/utils/app_styles.dart';
-import 'package:bookly_app/features/home/data/presentation/views/widgets/books_list_view.dart';
 import 'package:flutter/material.dart';
 
 class BookListHeader extends StatelessWidget {
@@ -12,10 +11,6 @@ class BookListHeader extends StatelessWidget {
       children: [
         Text('Books List', style: AppStyles.styleSemiBold18(context)),
         const SizedBox(height: 23),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: BooksListView(),
-        ),
       ],
     );
   }

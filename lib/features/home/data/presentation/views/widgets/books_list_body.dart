@@ -1,73 +1,80 @@
 import 'package:bookly_app/core/utils/app_images.dart';
+import 'package:bookly_app/core/utils/app_routes.dart';
 import 'package:bookly_app/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class BooksListBody extends StatelessWidget {
   const BooksListBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 125,
-      child: Row(
-        children: [
-          AspectRatio(
-            aspectRatio: 2.7 / 4,
-            child: Container(
-              decoration: ShapeDecoration(
-                image: const DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage(Assets.imagesTestImage),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+    return GestureDetector(
+      onTap: () => GoRouter.of(context).push(AppRouters.kDetailedBookView),
+      child: SizedBox(
+        height: 125,
+        child: Row(
+          children: [
+            AspectRatio(
+              aspectRatio: 2.7 / 4,
+              child: Container(
+                decoration: ShapeDecoration(
+                  image: const DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage(Assets.imagesTestImage),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
               ),
             ),
-          ),
 
-          const SizedBox(width: 30),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: Text(
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: true,
-                    maxLines: 2,
-                    'Harry Potter and the Goblet of Fires',
-                    style: AppStyles.styleRegular20(
-                      context,
-                    ).copyWith(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Text(
-                  'J.K. Rowling',
-                  style: AppStyles.styleMedium14(
-                    context,
-                  ).copyWith(color: const Color(0xff97959E)),
-                ),
-
-                Row(
-                  children: [
-                    FittedBox(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        r'19.99$',
-                        style: AppStyles.styleSemiBold20(context),
-                      ),
+            const SizedBox(width: 30),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Text(
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: true,
+                      maxLines: 2,
+                      'Harry Potter and the Goblet of Fires',
+                      style: AppStyles.styleRegular20(
+                        context,
+                      ).copyWith(fontWeight: FontWeight.bold),
                     ),
-                    const Spacer(),
-                    const BooksRating(),
-                  ],
-                ),
-              ],
+                  ),
+                  FittedBox(
+                    child: Text(
+                      'J.K. Rowling',
+                      style: AppStyles.styleMedium14(
+                        context,
+                      ).copyWith(color: const Color(0xff97959E)),
+                    ),
+                  ),
+
+                  Row(
+                    children: [
+                      FittedBox(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          r'19.99$',
+                          style: AppStyles.styleSemiBold20(context),
+                        ),
+                      ),
+                      const Spacer(),
+                      const BooksRating(),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -79,19 +86,24 @@ class BooksRating extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset(Assets.imagesRattingImage),
+        FittedBox(child: SvgPicture.asset(Assets.imagesRattingImage)),
         Padding(
           padding: const EdgeInsets.only(left: 9),
-          child: Text('4.8', style: AppStyles.styleMedium14(context)),
+          child: FittedBox(
+            child: Text('4.8', style: AppStyles.styleMedium14(context)),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 9),
-          child: Text(
-            "(2390)",
-            style: AppStyles.styleRegular14(
-              context,
-            ).copyWith(color: const Color(0xff504D5C)),
+          child: FittedBox(
+            child: Text(
+              "(2390)",
+              style: AppStyles.styleRegular14(
+                context,
+              ).copyWith(color: const Color(0xff504D5C)),
+            ),
           ),
         ),
       ],

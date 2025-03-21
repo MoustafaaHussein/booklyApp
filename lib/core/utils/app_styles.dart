@@ -21,7 +21,15 @@ abstract class AppStyles {
 
   static TextStyle styleMedium14(BuildContext context) {
     return TextStyle(
-      fontSize: getResponsiveFontSize(context, fontSize: 16),
+      fontSize: getResponsiveFontSize(context, fontSize: 14),
+
+      fontWeight: FontWeight.w500,
+    );
+  }
+
+  static TextStyle styleMedium18(BuildContext context) {
+    return TextStyle(
+      fontSize: getResponsiveFontSize(context, fontSize: 18),
 
       fontWeight: FontWeight.w500,
     );
@@ -51,9 +59,9 @@ abstract class AppStyles {
     );
   }
 
-  static TextStyle styleRegular12(BuildContext context) {
+  static TextStyle styleRegular30(BuildContext context) {
     return TextStyle(
-      fontSize: getResponsiveFontSize(context, fontSize: 12),
+      fontSize: getResponsiveFontSize(context, fontSize: 30),
 
       fontWeight: FontWeight.w400,
     );
