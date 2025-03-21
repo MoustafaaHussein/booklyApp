@@ -1,7 +1,7 @@
-import 'package:bookly_app/constants.dart';
-import 'package:bookly_app/core/utils/app_styles.dart';
 import 'package:bookly_app/features/home/data/presentation/views/widgets/book_cover.dart';
+import 'package:bookly_app/features/home/data/presentation/views/widgets/book_details.dart';
 import 'package:bookly_app/features/home/data/presentation/views/widgets/books_list_body.dart';
+import 'package:bookly_app/features/home/data/presentation/views/widgets/custom_book_button.dart';
 import 'package:flutter/material.dart';
 
 class DetaliedBooksViewBody extends StatelessWidget {
@@ -9,24 +9,20 @@ class DetaliedBooksViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const BookCover(),
-        const SizedBox(height: 40),
-        Text(
-          'The Jungle Book',
-          style: AppStyles.styleRegular30(
-            context,
-          ).copyWith(fontFamily: kGTSectraFine),
+        Padding(
+          padding: EdgeInsets.only(
+            right: width * 0.15,
+            left: width * 0.15 + 35,
+          ),
+          child: const BookCover(),
         ),
-        Text(
-          'Rudyard Kipling',
-          style: AppStyles.styleMedium18(
-            context,
-          ).copyWith(color: const Color(0xff707070)),
-        ),
+        const SizedBox(height: 10),
+        const BookDetails(),
         const BooksRating(),
+        const CustomBookButton(),
       ],
     );
   }

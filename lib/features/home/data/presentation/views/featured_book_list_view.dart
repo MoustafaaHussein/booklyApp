@@ -1,4 +1,4 @@
-import 'package:bookly_app/features/home/data/presentation/views/widgets/custom_list_view_items.dart';
+import 'package:bookly_app/features/home/data/presentation/views/widgets/book_cover.dart';
 import 'package:flutter/material.dart';
 
 class FuturedBookListView extends StatelessWidget {
@@ -13,7 +13,7 @@ class FuturedBookListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return const Padding(
             padding: EdgeInsets.only(left: 8.0, top: 8, bottom: 8),
-            child: CustomListViewItem(),
+            child: BookCover(),
           );
         },
       ),
