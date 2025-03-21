@@ -7,7 +7,10 @@ class BooksListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: 20,
+      padding: EdgeInsets.zero,
       itemBuilder: (context, index) {
         return const BooksListBody();
       },
