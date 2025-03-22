@@ -10,6 +10,7 @@ class BookCover extends StatelessWidget {
       aspectRatio: 2.7 / 4,
       child: Container(
         decoration: ShapeDecoration(
+          color: Colors.white,
           image: const DecorationImage(
             fit: BoxFit.fill,
             image: AssetImage(Assets.imagesTestImage),
