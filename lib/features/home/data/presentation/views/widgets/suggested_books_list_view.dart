@@ -13,7 +13,10 @@ class SuggestedBooksListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return const Padding(
             padding: EdgeInsets.only(top: 8, left: 8, bottom: 8),
-            child: BookCover(),
+            child: BookCover(
+              imageURl:
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9SRRmhH4X5N2e4QalcoxVbzYsD44C-sQv-w&s',
+            ),
           );
         },
       ),

@@ -13,7 +13,10 @@ class BookDetailsSection extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.only(right: width * 0.15, left: width * 0.25),
-          child: const BookCover(),
+          child: const BookCover(
+            imageURl:
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9SRRmhH4X5N2e4QalcoxVbzYsD44C-sQv-w&s',
+          ),
         ),
         const Center(child: BookDetails()),
         const Center(child: BooksRating()),
