@@ -12,6 +12,7 @@ class HomeViewBody extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
       child: CustomScrollView(
+        physics: NeverScrollableScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
             child: Column(
@@ -30,7 +31,7 @@ class HomeViewBody extends StatelessWidget {
           ),
           SliverFillRemaining(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
+              padding: EdgeInsets.only(bottom: 20),
               child: NewestBooksListView(),
             ),
           ),

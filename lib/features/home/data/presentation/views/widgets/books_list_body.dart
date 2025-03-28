@@ -1,35 +1,30 @@
 import 'package:bookly_app/core/utils/app_images.dart';
 import 'package:bookly_app/core/utils/app_routes.dart';
 import 'package:bookly_app/core/utils/app_styles.dart';
+import 'package:bookly_app/features/home/data/models/books_model/books_model.dart';
+import 'package:bookly_app/features/home/data/presentation/views/widgets/book_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class BooksListBody extends StatelessWidget {
-  const BooksListBody({super.key});
+  const BooksListBody({super.key, required this.items});
+
+  final BooksModel items;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => GoRouter.of(context).push(AppRouters.kDetailedBookView),
-      child: SizedBox(
+      onTap:
+          () => GoRouter.of(
+            context,
+          ).push(AppRouters.kDetailedBookView, extra: items),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
         height: 125,
         child: Row(
           children: [
-            AspectRatio(
-              aspectRatio: 2.7 / 4,
-              child: Container(
-                decoration: ShapeDecoration(
-                  image: const DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage(Assets.imagesTestImage),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-              ),
-            ),
+            BookCover(imageURl: items.volumeInfo.imageLinks.thumbnail),
 
             const SizedBox(width: 30),
             Expanded(
@@ -42,7 +37,7 @@ class BooksListBody extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       softWrap: true,
                       maxLines: 2,
-                      'Harry Potter and the Goblet of Fires',
+                      items.volumeInfo.title,
                       style: AppStyles.styleRegular20(
                         context,
                       ).copyWith(fontWeight: FontWeight.bold),
@@ -50,10 +45,10 @@ class BooksListBody extends StatelessWidget {
                   ),
                   FittedBox(
                     child: Text(
-                      'J.K. Rowling',
+                      items.volumeInfo.authors.toString(),
                       style: AppStyles.styleMedium14(
                         context,
-                      ).copyWith(color: const Color(0xff97959E)),
+                      ).copyWith(fontSize: 16, color: const Color(0xff97959E)),
                     ),
                   ),
 
@@ -62,7 +57,7 @@ class BooksListBody extends StatelessWidget {
                       FittedBox(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          r'19.99$',
+                          'Free',
                           style: AppStyles.styleSemiBold20(context),
                         ),
                       ),
