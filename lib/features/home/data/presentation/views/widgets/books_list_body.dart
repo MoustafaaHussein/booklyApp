@@ -1,7 +1,7 @@
+import 'package:bookly_app/core/models/books_model/books_model.dart';
 import 'package:bookly_app/core/utils/app_images.dart';
 import 'package:bookly_app/core/utils/app_routes.dart';
 import 'package:bookly_app/core/utils/app_styles.dart';
-import 'package:bookly_app/features/home/data/models/books_model/books_model.dart';
 import 'package:bookly_app/features/home/data/presentation/views/widgets/book_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

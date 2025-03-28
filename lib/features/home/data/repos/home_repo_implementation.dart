@@ -1,6 +1,6 @@
 import 'package:bookly_app/core/errors/failure.dart';
+import 'package:bookly_app/core/models/books_model/books_model.dart';
 import 'package:bookly_app/core/utils/api_service.dart';
-import 'package:bookly_app/features/home/data/models/books_model/books_model.dart';
 import 'package:bookly_app/features/home/data/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -10,11 +10,13 @@ class HomeRepoImplementation implements HomeRepo {
 
   HomeRepoImplementation(this.apiService);
   @override
-  Future<Either<Failure, List<BooksModel>>> fetchNewestBooks() async {
+  Future<Either<Failure, List<BooksModel>>> fetchNewestBooks({
+    required String category,
+  }) async {
     try {
       var data = await apiService.get(
         endPoint:
-            '/volumes?q=subject:politics&Filtering=free-ebooks&orderBy=newest',
+            '/volumes?q=subject:$category&Filtering=free-ebooks&orderBy=newest',
       );
       List<BooksModel> books = [];
       for (var items in data['items']) {
@@ -31,10 +33,12 @@ class HomeRepoImplementation implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BooksModel>>> fetchFeaturedBooks() async {
+  Future<Either<Failure, List<BooksModel>>> fetchFeaturedBooks({
+    required String category,
+  }) async {
     try {
       var data = await apiService.get(
-        endPoint: '/volumes?q=subject:programming&Filtering=free-ebooks',
+        endPoint: '/volumes?q=subject:$category&Filtering=free-ebooks',
       );
       List<BooksModel> books = [];
       for (var items in data['items']) {

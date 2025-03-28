@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
-
+  const HomeView({super.key, required this.category});
+  final String category;
   @override
   State<HomeView> createState() => _HomeViewState();
 }
@@ -14,8 +14,12 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
-    BlocProvider.of<FeaturedBooksCubit>(context).fetchFeaturedBooks();
-    BlocProvider.of<NewestBooksCubit>(context).fetchNewestBooks();
+    BlocProvider.of<FeaturedBooksCubit>(
+      context,
+    ).fetchFeaturedBooks(category: widget.category);
+    BlocProvider.of<NewestBooksCubit>(
+      context,
+    ).fetchNewestBooks(category: widget.category);
     super.initState();
   }
 
