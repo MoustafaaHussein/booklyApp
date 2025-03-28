@@ -8,11 +8,13 @@ class CustomBookButton extends StatelessWidget {
     this.textColor,
     required this.displayText,
     required this.borderRadius,
+    this.onPressed,
   });
   final Color? backgroundColor;
   final Color? textColor;
   final String displayText;
   final BorderRadius borderRadius;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -24,7 +26,7 @@ class CustomBookButton extends StatelessWidget {
         ),
 
         child: TextButton(
-          onPressed: () {},
+          onPressed: onPressed,
           child: FittedBox(
             child: Text(
               displayText,

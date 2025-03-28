@@ -17,7 +17,7 @@ class DetaliedBooksViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               BookDetailsSection(books: books),
-              const BooksActionSection(),
+              BooksActionSection(books: books),
               const Expanded(child: SizedBox(height: 15)),
               const SuggestedBooks(),
               const SizedBox(height: 40),
