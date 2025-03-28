@@ -9,7 +9,7 @@ class BookCover extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: AspectRatio(
-        aspectRatio: 2.6 / 4,
+        aspectRatio: 2.9 / 4,
         child: CachedNetworkImage(
           errorWidget: (context, url, error) => const Icon(Icons.warning),
           fit: BoxFit.fill,

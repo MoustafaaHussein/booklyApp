@@ -18,7 +18,7 @@ class DetaliedBooksViewBody extends StatelessWidget {
             children: [
               BookDetailsSection(books: books),
               const BooksActionSection(),
-              const Expanded(child: SizedBox(height: 50)),
+              const Expanded(child: SizedBox(height: 15)),
               const SuggestedBooks(),
               const SizedBox(height: 40),
             ],

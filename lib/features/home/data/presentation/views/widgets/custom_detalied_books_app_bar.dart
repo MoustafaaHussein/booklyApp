@@ -19,7 +19,7 @@ class CustomDetaliedBooksAppBar extends StatelessWidget
         onPressed: () {
           GoRouter.of(context).pop();
         },
-        icon: const Icon(FontAwesomeIcons.x),
+        icon: const Icon(Icons.arrow_back),
       ),
       actions: [
         IconButton(
