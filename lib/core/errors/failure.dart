@@ -100,7 +100,7 @@ class ServiceFailure extends Failure {
       case 'account-exists-with-different-credential':
         return ServiceFailure(
           errorMessage:
-              'An account already exists with a different credential. Try a different login method.',
+              'An account already exists with a different credential.',
         );
 
       case 'credential-already-in-use':
