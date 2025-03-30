@@ -17,12 +17,19 @@ class SearchViewBody extends StatelessWidget {
       builder: (context, state) {
         if (state is SerchSpecificCategoryInitial) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 40,
+                padding: const EdgeInsets.all(20),
+                child: IconButton(
+                  onPressed: () {
+                    GoRouter.of(context).pop();
+                  },
+                  icon: const Icon(Icons.arrow_back, color: Colors.white),
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextField(
                   onSubmitted: (value) {
                     BlocProvider.of<SerchSpecificCategoryCubit>(

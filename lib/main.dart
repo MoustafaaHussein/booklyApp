@@ -1,15 +1,25 @@
+import 'package:bookly_app/blocObserever.dart';
 import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/utils/app_routes.dart';
 import 'package:bookly_app/core/utils/service_locator.dart';
+import 'package:bookly_app/features/auth/data/presentation/manger/auth_bloc/auth_bloc.dart';
 import 'package:bookly_app/features/home/data/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
 import 'package:bookly_app/features/home/data/presentation/manger/newest_books_cubit/newest_books_cubit_cubit.dart';
 import 'package:bookly_app/features/home/data/repos/home_repo_implementation.dart';
+import 'package:bookly_app/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
+  Bloc.observer = SimpleBlocObserver();
   setupServiceLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    name: 'chat-app',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const BooklyApp());
 }
 
@@ -31,6 +41,7 @@ class BooklyApp extends StatelessWidget {
               (context) =>
                   NewestBooksCubit(getIt.get<HomeRepoImplementation>()),
         ),
+        BlocProvider(create: (context) => AuthBloc()),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouters.router,
