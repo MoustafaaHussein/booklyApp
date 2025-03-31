@@ -1,8 +1,7 @@
-import 'package:bookly_app/core/utils/app_routes.dart';
 import 'package:bookly_app/core/utils/app_styles.dart';
+import 'package:bookly_app/features/search/data/presentation/views/widgets/search_drop_down_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 
 class BookListHeader extends StatelessWidget {
   const BookListHeader({super.key});
@@ -25,14 +24,24 @@ class BookListHeader extends StatelessWidget {
   }
 }
 
-class CustomCategoryButton extends StatelessWidget {
+class CustomCategoryButton extends StatefulWidget {
   const CustomCategoryButton({super.key});
 
+  @override
+  State<CustomCategoryButton> createState() => _CustomCategoryButtonState();
+}
+
+class _CustomCategoryButtonState extends State<CustomCategoryButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouters.kSearchView);
+        setState(() {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => const SearchSubjectDropDownMenu(),
+          );
+        });
       },
       child: Row(
         children: [

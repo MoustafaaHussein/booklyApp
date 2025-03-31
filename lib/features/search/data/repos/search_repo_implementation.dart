@@ -9,14 +9,16 @@ class SearchRepoImplementation implements SearchRepo {
   final ApiService apiService;
 
   SearchRepoImplementation(this.apiService);
+
   @override
   Future<Either<Failure, List<BooksModel>>> fetchSelectedCategory({
-    required String category,
+    required String searchParameter,
+    required String searchby,
   }) async {
     try {
       var data = await apiService.get(
         endPoint:
-            '/volumes?q=subject:$category&Filtering=free-ebooks&orderBy=newest',
+            '/volumes?q=$searchby:$searchParameter&Filtering=free-ebooks&orderBy=newest',
       );
       List<BooksModel> books = [];
       for (var items in data['items']) {

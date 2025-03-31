@@ -9,8 +9,14 @@ class SerchSpecificCategoryCubit extends Cubit<SerchSpecificCategoryState> {
   SerchSpecificCategoryCubit(this.searchRepo)
     : super(SerchSpecificCategoryInitial());
   final SearchRepo searchRepo;
-  void fetchSpecificCategory({required String category}) async {
-    var result = await searchRepo.fetchSelectedCategory(category: category);
+  void fetchSpecificCategory({
+    required String searchBy,
+    required String searchParamter,
+  }) async {
+    var result = await searchRepo.fetchSelectedCategory(
+      searchParameter: searchBy,
+      searchby: searchParamter,
+    );
 
     result.fold(
       (failure) {

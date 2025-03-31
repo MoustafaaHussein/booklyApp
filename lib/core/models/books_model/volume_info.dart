@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/helpers/constants.dart';
 import 'package:equatable/equatable.dart';
 
 import 'image_links.dart';
@@ -50,7 +51,10 @@ class VolumeInfo extends Equatable {
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
     title: json['title'] as String,
-    authors: (json['authors'] as List<dynamic>?)!.cast<String>(),
+    authors:
+        json['authors'] == null
+            ? ["Not Available"]
+            : (json['authors'] as List<dynamic>).cast<String>(),
     publisher: json['publisher'] as String?,
     publishedDate: json['publishedDate'] as String?,
     description: json['description'] as String?,
@@ -72,11 +76,15 @@ class VolumeInfo extends Equatable {
     contentVersion: json['contentVersion'] as String?,
     panelizationSummary:
         json['panelizationSummary'] == null
-            ? null
+            ? const PanelizationSummary()
             : PanelizationSummary.fromJson(
               json['panelizationSummary'] as Map<String, dynamic>,
             ),
-    imageLinks: ImageLinks.fromJson(json['imageLinks'] as Map<String, dynamic>),
+
+    imageLinks:
+        json['imageLinks'] == null
+            ? const ImageLinks(smallThumbnail: kNoImage, thumbnail: kNoImage)
+            : ImageLinks.fromJson(json['imageLinks'] as Map<String, dynamic>),
     language: json['language'] as String?,
     previewLink: json['previewLink'] as String?,
     infoLink: json['infoLink'] as String?,
