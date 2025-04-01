@@ -9,7 +9,7 @@ class CustomPassowrdChecker extends StatelessWidget {
     required this.password,
   });
   final passNotifier = ValueNotifier<PasswordStrength?>(null);
-  late String email, password;
+  final String email, password;
   @override
   Widget build(BuildContext context) {
     return Column(

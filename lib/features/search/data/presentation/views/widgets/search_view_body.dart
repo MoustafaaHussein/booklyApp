@@ -20,7 +20,7 @@ class SearchViewBody extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
+              /*  Padding(
                 padding: const EdgeInsets.all(20),
                 child: IconButton(
                   onPressed: () {
@@ -28,7 +28,7 @@ class SearchViewBody extends StatelessWidget {
                   },
                   icon: const Icon(Icons.arrow_back, color: Colors.white),
                 ),
-              ),
+              ), */
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextField(
@@ -36,7 +36,7 @@ class SearchViewBody extends StatelessWidget {
                     fetchBooks(context, value);
                   },
                   decoration: InputDecoration(
-                    hintText: 'Serch for Specific Category',
+                    hintText: 'Serch for book title',
                     suffixIcon: const Icon(FontAwesomeIcons.magnifyingGlass),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),

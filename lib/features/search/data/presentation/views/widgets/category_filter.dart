@@ -1,5 +1,5 @@
 import 'package:bookly_app/core/utils/app_styles.dart';
-import 'package:bookly_app/features/search/data/presentation/views/widgets/search_subject_List_view.dart';
+import 'package:bookly_app/features/search/data/presentation/views/widgets/search_subject_list_view.dart';
 import 'package:flutter/material.dart';
 
 class CategoryFilter extends StatelessWidget {
