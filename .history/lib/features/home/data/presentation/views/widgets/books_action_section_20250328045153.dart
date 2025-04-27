@@ -1,0 +1,35 @@
+import 'package:bookly_app/features/home/data/models/books_model/books_model.dart';
+import 'package:bookly_app/features/home/data/presentation/views/widgets/custom_book_button.dart';
+import 'package:flutter/material.dart';
+
+class BooksActionSection extends StatelessWidget {
+  const BooksActionSection({super.key});
+  final BooksModel books;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
+      child: Row(
+        children: [
+          const CustomBookButton(
+            textColor: Colors.black,
+            displayText: 'Free',
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(12),
+              topLeft: Radius.circular(12),
+            ),
+          ),
+          CustomBookButton(
+            onPressed: () {},
+            backgroundColor: const Color(0xffEF8262),
+            displayText: r'Free preview',
+            borderRadius: const BorderRadius.only(
+              bottomRight: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
