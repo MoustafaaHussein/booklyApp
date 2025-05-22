@@ -12,7 +12,7 @@ final class FeaturedBooksInitial extends FeaturedBooksState {}
 final class FeaturedBooksLoading extends FeaturedBooksState {}
 
 final class FeaturedBooksSuccess extends FeaturedBooksState {
-  final List<BooksModel> books;
+  final List<BookEntity> books;
 
   const FeaturedBooksSuccess(this.books);
 }
