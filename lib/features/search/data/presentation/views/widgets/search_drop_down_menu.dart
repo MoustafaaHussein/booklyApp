@@ -8,18 +8,18 @@ class SearchSubjectDropDownMenu extends StatefulWidget {
   const SearchSubjectDropDownMenu({super.key});
 
   @override
-  _SearchSubjectDropDownMenuState createState() =>
-      _SearchSubjectDropDownMenuState();
+  SearchSubjectDropDownMenuState createState() =>
+      SearchSubjectDropDownMenuState();
 }
 
-class _SearchSubjectDropDownMenuState extends State<SearchSubjectDropDownMenu> {
+class SearchSubjectDropDownMenuState extends State<SearchSubjectDropDownMenu> {
   SearchCategoryModel? selectedSubject = subjectList.first; // Default selection
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: DropdownButton<SearchCategoryModel>(
-        value: selectedSubject == "Select Category" ? null : selectedSubject,
+        value: selectedSubject,
         onChanged: (SearchCategoryModel? newValue) {
           setState(() {
             selectedSubject = newValue;

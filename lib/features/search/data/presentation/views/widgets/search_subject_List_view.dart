@@ -1,8 +1,11 @@
-import 'package:bookly_app/features/search/data/presentation/manger/serch%20specific%20category%20cubit/serch_specific_category_cubit.dart';
+// ignore_for_file: file_names
+
 import 'package:bookly_app/features/search/data/presentation/models/search_category_model.dart';
 import 'package:bookly_app/features/search/data/presentation/views/widgets/search_subject_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../manger/serch specific category cubit/serch_specific_category_cubit.dart';
 
 class SearchSubjectListView extends StatelessWidget {
   const SearchSubjectListView({super.key});

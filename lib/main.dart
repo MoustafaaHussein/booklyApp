@@ -1,4 +1,3 @@
-import 'package:bookly_app/blocObserever.dart';
 import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/utils/app_routes.dart';
 import 'package:bookly_app/core/utils/service_locator.dart';
@@ -13,11 +12,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
-  Bloc.observer = SimpleBlocObserver();
   setupServiceLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    name: 'chat-app',
+    name: 'bookly-app',
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const BooklyApp());

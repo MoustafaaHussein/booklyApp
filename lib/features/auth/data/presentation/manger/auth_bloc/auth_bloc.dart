@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:bookly_app/core/errors/failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -18,8 +17,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             password: event.password,
           );
           emit(LoginSuccess());
-        } on PlatformException catch (e) {
-          print(e.message);
         } on FirebaseAuthException catch (e) {
           emit(
             LoginFailure(
