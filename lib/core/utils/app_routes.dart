@@ -4,10 +4,10 @@ import 'package:bookly_app/features/auth/data/presentation/manger/auth_bloc/auth
 import 'package:bookly_app/features/auth/data/presentation/views/RegisterationPage.dart';
 import 'package:bookly_app/features/auth/data/presentation/views/login_view.dart';
 import 'package:bookly_app/features/auth/data/presentation/views/password_reset_view.dart';
-import 'package:bookly_app/features/home/data/presentation/manger/similar%20books%20cubit/similar_books_cubit.dart';
-import 'package:bookly_app/features/home/data/presentation/views/detalied_books_view.dart';
-import 'package:bookly_app/features/home/data/presentation/views/home_view.dart';
 import 'package:bookly_app/features/home/data/repos/home_repo_implementation.dart';
+import 'package:bookly_app/features/home/presentation/manger/similar%20books%20cubit/similar_books_cubit.dart';
+import 'package:bookly_app/features/home/presentation/views/detalied_books_view.dart';
+import 'package:bookly_app/features/home/presentation/views/home_view.dart';
 import 'package:bookly_app/features/search/data/presentation/manger/serch%20specific%20category%20cubit/serch_specific_category_cubit.dart';
 import 'package:bookly_app/features/search/data/presentation/views/search_view.dart';
 import 'package:bookly_app/features/search/data/repos/search_repo_implementation.dart';

@@ -48,6 +48,7 @@ dependencies:
   url_launcher: ^6.3.1
   firebase_auth: ^5.3.4
   password_strength_checker: ^1.2.4
+  hive: ^2.2.3
 
 dev_dependencies:
   flutter_lints: ^5.0.0

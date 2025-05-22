@@ -1,5 +1,5 @@
 import 'package:bookly_app/core/utils/app_styles.dart';
-import 'package:bookly_app/features/home/data/presentation/views/widgets/custom_category_button.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/custom_category_button.dart';
 import 'package:flutter/material.dart';
 
 class BookListHeader extends StatelessWidget {
