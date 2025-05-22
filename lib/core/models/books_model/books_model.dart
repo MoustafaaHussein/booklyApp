@@ -1,11 +1,11 @@
-import 'package:equatable/equatable.dart';
+import 'package:bookly_app/features/home/domain/entites/book_entity/book_entity.dart';
 
 import 'access_info.dart';
 import 'sale_info.dart';
 import 'search_info.dart';
 import 'volume_info.dart';
 
-class BooksModel extends Equatable {
+class BooksModel extends BookEntity {
   final String? kind;
   final String? id;
   final String? etag;
@@ -15,7 +15,7 @@ class BooksModel extends Equatable {
   final AccessInfo? accessInfo;
   final SearchInfo? searchInfo;
 
-  const BooksModel({
+  BooksModel({
     this.kind,
     this.id,
     this.etag,
@@ -24,7 +24,12 @@ class BooksModel extends Equatable {
     this.saleInfo,
     this.accessInfo,
     this.searchInfo,
-  });
+  }) : super(
+         title: volumeInfo.title,
+         author: volumeInfo.authors.first,
+         image: volumeInfo.imageLinks.thumbnail,
+         ratting: volumeInfo.maturityRating,
+       );
 
   factory BooksModel.fromJson(Map<String, dynamic> json) => BooksModel(
     kind: json['kind'] as String?,

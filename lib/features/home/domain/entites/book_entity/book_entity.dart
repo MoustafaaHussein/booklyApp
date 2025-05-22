@@ -3,7 +3,7 @@ class BookEntity {
   final String? title;
   final String? author;
   final String? image;
-  final num? ratting;
+  final String? ratting;
 
   BookEntity({
     required this.title,
