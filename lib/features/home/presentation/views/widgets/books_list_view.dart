@@ -1,5 +1,4 @@
 import 'package:bookly_app/features/home/presentation/manger/newest_books_cubit/newest_books_cubit_cubit.dart';
-import 'package:bookly_app/features/home/presentation/views/widgets/books_list_body.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/customized_error_message.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/customized_loading_indicator.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,8 @@ class NewestBooksListView extends StatelessWidget {
             padding: EdgeInsets.zero,
             itemCount: state.books.length,
             itemBuilder: (context, index) {
-              return BooksListBody(items: state.books[index]);
+              return const SizedBox(); // TODO
+              // return BooksListBody(items: state.books[index]);
             },
           );
         } else if (state is NewestBooksFailure) {
