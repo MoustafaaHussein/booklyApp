@@ -1,5 +1,6 @@
 import 'package:bookly_app/core/models/books_model/books_model.dart';
 import 'package:bookly_app/core/utils/api_service.dart';
+import 'package:bookly_app/core/utils/saving_data_locally.dart';
 import 'package:bookly_app/features/home/domain/entities/books_entity.dart';
 
 abstract class HomeRemoteDataSource {
@@ -21,6 +22,8 @@ class HomeRemoteDataSourceImplementation extends HomeRemoteDataSource {
       endPoint: '/volumes?q=title:$category&Filtering=free-ebooks',
     );
     List<BooksEntity> books = getBooksList(data);
+    storingDataLocally(books);
+
     return books;
   }
 
