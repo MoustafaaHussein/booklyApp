@@ -29,11 +29,8 @@ class FuturedBookListView extends StatelessWidget {
                         AppRouters.kDetailedBookView,
                         extra: state.books[0],
                       );
-                    }, // TODO
-                    child: const BookCover(
-                      imageURl:
-                          'state.books[index].volumeInfo.imageLinks.thumbnail,',
-                    ),
+                    },
+                    child: BookCover(imageURl: state.books[index].image),
                   ),
                 );
               },

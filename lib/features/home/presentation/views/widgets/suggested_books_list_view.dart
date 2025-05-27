@@ -29,7 +29,7 @@ class SuggestedBooksListView extends StatelessWidget {
                         AppRouters.kDetailedBookView,
                         extra: state.books[index],
                       );
-                    }, //TODO
+                    },
                     child: const BookCover(
                       imageURl:
                           'state.books[index].volumeInfo.imageLinks.thumbnail,',

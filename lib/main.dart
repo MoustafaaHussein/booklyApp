@@ -2,8 +2,9 @@ import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/utils/app_routes.dart';
 import 'package:bookly_app/core/utils/service_locator.dart';
 import 'package:bookly_app/features/auth/data/presentation/manger/auth_bloc/auth_bloc.dart';
-import 'package:bookly_app/features/home/data/repos/home_repo_implementation.dart';
 import 'package:bookly_app/features/home/domain/entities/books_entity.dart';
+import 'package:bookly_app/features/home/domain/use_cases/featch_featured_books_use_case.dart';
+import 'package:bookly_app/features/home/domain/use_cases/fetch_newest_books_use_case.dart';
 import 'package:bookly_app/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
 import 'package:bookly_app/features/home/presentation/manger/newest_books_cubit/newest_books_cubit_cubit.dart';
 import 'package:bookly_app/firebase_options.dart';
@@ -39,12 +40,12 @@ class BooklyApp extends StatelessWidget {
         BlocProvider(
           create:
               (context) =>
-                  FeaturedBooksCubit(getIt.get<HomeRepoImplementation>()),
+                  FeaturedBooksCubit(getIt.get<FetchFeaturedBooksUseCase>()),
         ),
         BlocProvider(
           create:
               (context) =>
-                  NewestBooksCubit(getIt.get<HomeRepoImplementation>()),
+                  NewestBooksCubit(getIt.get<FetchNewestBooksUseCase>()),
         ),
         BlocProvider(create: (context) => AuthBloc()),
       ],

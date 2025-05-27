@@ -88,7 +88,6 @@ class LoginView extends StatelessWidget {
                         BlocProvider.of<AuthBloc>(
                           context,
                         ).add(LoginEvent(email: email!, password: passowrd!));
-                        /*  GoRouter.of(context).push(AppRouters.kHomePath); */
                       } else {
                         showStatusMessage(
                           context,

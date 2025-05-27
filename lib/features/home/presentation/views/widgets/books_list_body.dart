@@ -1,7 +1,7 @@
-import 'package:bookly_app/core/models/books_model/books_model.dart';
 import 'package:bookly_app/core/utils/app_images.dart';
 import 'package:bookly_app/core/utils/app_routes.dart';
 import 'package:bookly_app/core/utils/app_styles.dart';
+import 'package:bookly_app/features/home/domain/entities/books_entity.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 class BooksListBody extends StatelessWidget {
   const BooksListBody({super.key, required this.items});
 
-  final BooksModel items;
+  final BooksEntity items;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class BooksListBody extends StatelessWidget {
         height: 125,
         child: Row(
           children: [
-            BookCover(imageURl: items.volumeInfo.imageLinks.thumbnail),
+            BookCover(imageURl: items.image),
 
             const SizedBox(width: 30),
             Expanded(
@@ -37,7 +37,7 @@ class BooksListBody extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       softWrap: true,
                       maxLines: 2,
-                      items.volumeInfo.title,
+                      items.title,
                       style: AppStyles.styleRegular20(
                         context,
                       ).copyWith(fontWeight: FontWeight.bold),
@@ -45,7 +45,7 @@ class BooksListBody extends StatelessWidget {
                   ),
                   FittedBox(
                     child: Text(
-                      items.volumeInfo.authors.toString(),
+                      items.author,
                       style: AppStyles.styleMedium14(
                         context,
                       ).copyWith(fontSize: 16, color: const Color(0xff97959E)),
