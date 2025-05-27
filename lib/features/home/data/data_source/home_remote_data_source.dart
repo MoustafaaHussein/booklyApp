@@ -14,7 +14,7 @@ abstract class HomeRemoteDataSource {
 class HomeRemoteDataSourceImplementation extends HomeRemoteDataSource {
   final ApiService apiService;
 
-  HomeRemoteDataSourceImplementation(this.apiService);
+  HomeRemoteDataSourceImplementation({required this.apiService});
   @override
   Future<List<BooksEntity>> fetchFeaturedBooks({
     required String category,
