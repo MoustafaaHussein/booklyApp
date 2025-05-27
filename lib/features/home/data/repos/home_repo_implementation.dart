@@ -18,14 +18,12 @@ class HomeRepoImplementation implements HomeRepo {
     required String category,
   }) async {
     try {
-      var cachedbooks = homeLocalDataSource.fetchNewestBooks();
-      if (cachedbooks.isNotEmpty) {
-        return right(cachedbooks);
+      List<BooksEntity> books = homeLocalDataSource.fetchNewestBooks();
+      if (books.isNotEmpty) {
+        return right(books);
       }
 
-      var books = await homeRemoteDataSource.fetchNewestBooks(
-        category: category,
-      );
+      books = await homeRemoteDataSource.fetchNewestBooks(category: category);
       return right(books);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -41,14 +39,12 @@ class HomeRepoImplementation implements HomeRepo {
     required String category,
   }) async {
     try {
-      var cachedbooks = homeLocalDataSource.fetchFeaturedBooks();
-      if (cachedbooks.isNotEmpty) {
-        return right(cachedbooks);
+      List<BooksEntity> books = homeLocalDataSource.fetchFeaturedBooks();
+      if (books.isNotEmpty) {
+        return right(books);
       }
 
-      var books = await homeRemoteDataSource.fetchFeaturedBooks(
-        category: category,
-      );
+      books = await homeRemoteDataSource.fetchFeaturedBooks(category: category);
       return right(books);
     } catch (e) {
       if (e is DioException) {
@@ -64,13 +60,11 @@ class HomeRepoImplementation implements HomeRepo {
     required String category,
   }) async {
     try {
-      var cachedbooks = homeLocalDataSource.fetchSimilarBooks();
-      if (cachedbooks.isNotEmpty) {
-        return right(cachedbooks);
+      List<BooksEntity> books = homeLocalDataSource.fetchSimilarBooks();
+      if (books.isNotEmpty) {
+        return right(books);
       }
-      var books = await homeRemoteDataSource.fetchSimilarBooks(
-        category: category,
-      );
+      books = await homeRemoteDataSource.fetchSimilarBooks(category: category);
       return right(books);
     } catch (e) {
       if (e is DioException) {

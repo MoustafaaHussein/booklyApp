@@ -125,3 +125,7 @@ class ServiceFailure extends Failure {
     }
   }
 }
+
+class CacheFailure extends Failure {
+  CacheFailure({required super.errorMessage});
+}
