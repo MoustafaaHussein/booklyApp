@@ -5,14 +5,14 @@ import 'package:bookly_app/features/home/presentation/views/widgets/featured_boo
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
-
+  const HomeViewBody({super.key, required this.category});
+  final String category;
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
       child: CustomScrollView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
             child: Column(
@@ -20,16 +20,16 @@ class HomeViewBody extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomAppBar(),
-                    FuturedBookListView(),
-                    SizedBox(height: 20),
-                    BookListHeader(),
+                    const CustomAppBar(),
+                    FuturedBookListView(category: category),
+                    const SizedBox(height: 20),
+                    const BookListHeader(),
                   ],
                 ),
               ],
             ),
           ),
-          SliverFillRemaining(
+          const SliverFillRemaining(
             child: Padding(
               padding: EdgeInsets.only(bottom: 20),
               child: NewestBooksListView(),

@@ -7,8 +7,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class FuturedBookListView extends StatelessWidget {
-  const FuturedBookListView({super.key});
+class FuturedBookListView extends StatefulWidget {
+  const FuturedBookListView({super.key, required this.category});
+  final String category;
+  @override
+  State<FuturedBookListView> createState() => _FuturedBookListViewState();
+}
+
+class _FuturedBookListViewState extends State<FuturedBookListView> {
+  final ScrollController _scrollController = ScrollController();
+  bool _hasFetchedMore = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+
+    if (!_hasFetchedMore && currentScroll >= 0.7 * maxScroll) {
+      _hasFetchedMore = true;
+      context.read<FeaturedBooksCubit>().fetchFeaturedBooks(
+        category: widget.category,
+      );
+
+      // Optional: reset flag after delay if pagination is supported
+      Future.delayed(const Duration(seconds: 1), () => _hasFetchedMore = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +53,7 @@ class FuturedBookListView extends StatelessWidget {
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.3,
             child: ListView.builder(
+              controller: _scrollController,
               itemCount: state.books.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
@@ -27,7 +63,7 @@ class FuturedBookListView extends StatelessWidget {
                     onTap: () {
                       GoRouter.of(context).push(
                         AppRouters.kDetailedBookView,
-                        extra: state.books[0],
+                        extra: state.books[index],
                       );
                     },
                     child: BookCover(imageURl: state.books[index].image),

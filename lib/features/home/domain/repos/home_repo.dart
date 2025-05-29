@@ -8,6 +8,7 @@ abstract class HomeRepo {
   });
   Future<Either<Failure, List<BooksEntity>>> fetchFeaturedBooks({
     required String category,
+    int pageNumber = 0,
   });
   Future<Either<Failure, List<BooksEntity>>> fetchSimilarBooks({
     required String category,

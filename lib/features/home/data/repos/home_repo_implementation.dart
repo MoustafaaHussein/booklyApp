@@ -36,6 +36,7 @@ class HomeRepoImplementation implements HomeRepo {
 
   @override
   Future<Either<Failure, List<BooksEntity>>> fetchFeaturedBooks({
+    int pageNumber = 1,
     required String category,
   }) async {
     try {

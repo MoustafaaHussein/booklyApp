@@ -40,7 +40,8 @@ class BooklyApp extends StatelessWidget {
         BlocProvider(
           create:
               (context) =>
-                  FeaturedBooksCubit(getIt.get<FetchFeaturedBooksUseCase>()),
+                  FeaturedBooksCubit(getIt.get<FetchFeaturedBooksUseCase>())
+                    ..fetchFeaturedBooks(category: 'sports'),
         ),
         BlocProvider(
           create:
@@ -52,8 +53,7 @@ class BooklyApp extends StatelessWidget {
       child: MaterialApp.router(
         routerConfig: AppRouters.router,
         debugShowCheckedModeBanner: false,
-        /* locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder, */
+
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: kPrimaryColor,
           textTheme: GoogleFonts.montserratTextTheme(

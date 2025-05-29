@@ -4,12 +4,15 @@ import 'package:bookly_app/features/home/domain/repos/home_repo.dart';
 import 'package:bookly_app/features/home/domain/use_cases/use_case.dart';
 import 'package:dartz/dartz.dart';
 
-class FetchSimilarBooksUseCase extends UseCase<List<BooksEntity>, String> {
+class FetchSimilarBooksUseCase extends UseCase<List<BooksEntity>, String, int> {
   final HomeRepo homeRepo;
 
   FetchSimilarBooksUseCase(this.homeRepo);
   @override
-  Future<Either<Failure, List<BooksEntity>>> call([String? category]) async {
+  Future<Either<Failure, List<BooksEntity>>> call([
+    String? category,
+    int pageNumber = 0,
+  ]) async {
     return await homeRepo.fetchSimilarBooks(category: category!);
   }
 }

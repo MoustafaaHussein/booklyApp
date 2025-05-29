@@ -25,6 +25,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: HomeViewBody());
+    return Scaffold(body: HomeViewBody(category: widget.category));
   }
 }
