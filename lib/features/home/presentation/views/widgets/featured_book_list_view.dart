@@ -16,6 +16,7 @@ class FuturedBookListView extends StatefulWidget {
 
 class _FuturedBookListViewState extends State<FuturedBookListView> {
   final ScrollController _scrollController = ScrollController();
+  var nextPage = 1;
   bool _hasFetchedMore = false;
 
   @override
@@ -38,6 +39,7 @@ class _FuturedBookListViewState extends State<FuturedBookListView> {
       _hasFetchedMore = true;
       context.read<FeaturedBooksCubit>().fetchFeaturedBooks(
         category: widget.category,
+        pageNumber: nextPage++,
       );
 
       // Optional: reset flag after delay if pagination is supported

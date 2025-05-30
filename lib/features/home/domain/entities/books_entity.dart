@@ -13,7 +13,10 @@ class BooksEntity {
   @HiveField(3)
   final String ratting;
   @HiveField(4)
+  final String previewLink;
+  @HiveField(5)
   BooksEntity({
+    required this.previewLink,
     required this.author,
     required this.title,
     required this.image,

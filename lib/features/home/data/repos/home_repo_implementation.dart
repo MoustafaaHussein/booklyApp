@@ -36,11 +36,14 @@ class HomeRepoImplementation implements HomeRepo {
 
   @override
   Future<Either<Failure, List<BooksEntity>>> fetchFeaturedBooks({
-    int pageNumber = 1,
+    int pageNumber = 0,
     required String category,
   }) async {
     try {
-      List<BooksEntity> books = homeLocalDataSource.fetchFeaturedBooks();
+      List<BooksEntity> books = homeLocalDataSource.fetchFeaturedBooks(
+        category,
+        pageNumber,
+      );
       if (books.isNotEmpty) {
         return right(books);
       }

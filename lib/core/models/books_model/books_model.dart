@@ -29,6 +29,7 @@ class BooksModel extends BooksEntity {
          author: volumeInfo.authors.first,
          image: volumeInfo.imageLinks.thumbnail,
          ratting: volumeInfo.maturityRating!,
+         previewLink: volumeInfo.previewLink!,
        );
 
   factory BooksModel.fromJson(Map<String, dynamic> json) => BooksModel(

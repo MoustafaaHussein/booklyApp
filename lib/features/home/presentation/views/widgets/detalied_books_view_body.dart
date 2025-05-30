@@ -1,4 +1,3 @@
-import 'package:bookly_app/core/models/books_model/books_model.dart';
 import 'package:bookly_app/features/home/domain/entities/books_entity.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/books_action_section.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/books_details_section.dart';
@@ -18,7 +17,7 @@ class DetaliedBooksViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               BookDetailsSection(books: books),
-              BooksActionSection(books: books as BooksModel), // TODO
+              BooksActionSection(books: books), // TODO
               const Expanded(child: SizedBox(height: 15)),
               const SuggestedBooks(),
               const SizedBox(height: 40),

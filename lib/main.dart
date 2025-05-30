@@ -15,17 +15,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // <-- Move this to the top
+
   await Hive.initFlutter();
   Hive.registerAdapter(BooksEntityAdapter());
   await Hive.openBox<BooksEntity>(kFeaturedBox);
   await Hive.openBox<BooksEntity>(kNewestBox);
   await Hive.openBox<BooksEntity>(kSimilarBox);
-  WidgetsFlutterBinding.ensureInitialized();
+
   setupServiceLocator();
+
   await Firebase.initializeApp(
     name: 'bookly-app',
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const BooklyApp());
 }
 
