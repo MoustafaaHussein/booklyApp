@@ -8,9 +8,9 @@ import 'package:bookly_app/features/home/domain/use_cases/fetch_similar_books_us
 import 'package:bookly_app/features/home/presentation/manger/similar%20books%20cubit/similar_books_cubit.dart';
 import 'package:bookly_app/features/home/presentation/views/detalied_books_view.dart';
 import 'package:bookly_app/features/home/presentation/views/home_view.dart';
-import 'package:bookly_app/features/search/data/presentation/manger/serch%20specific%20category%20cubit/serch_specific_category_cubit.dart';
-import 'package:bookly_app/features/search/data/presentation/views/search_view.dart';
 import 'package:bookly_app/features/search/data/repos/search_repo_implementation.dart';
+import 'package:bookly_app/features/search/presentation/manger/serch%20specific%20category%20cubit/serch_specific_category_cubit.dart';
+import 'package:bookly_app/features/search/presentation/views/search_view.dart';
 import 'package:bookly_app/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -35,7 +35,7 @@ abstract class AppRouters {
                   getIt.get<SearchRepoImplementation>(),
                 );
               },
-              child: HomeView(category: (state.extra as String?) ?? 'politics'),
+              child: HomeView(category: (state.extra as String?) ?? 'sports'),
             ),
       ),
       GoRoute(

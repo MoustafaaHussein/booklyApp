@@ -1,4 +1,4 @@
-import 'package:bookly_app/features/search/data/presentation/views/widgets/search_drop_down_menu.dart';
+import 'package:bookly_app/features/search/presentation/views/widgets/search_drop_down_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

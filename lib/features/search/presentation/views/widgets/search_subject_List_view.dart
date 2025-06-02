@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
-import 'package:bookly_app/features/search/data/presentation/models/search_category_model.dart';
-import 'package:bookly_app/features/search/data/presentation/views/widgets/search_subject_item.dart';
+import 'package:bookly_app/features/search/presentation/models/search_category_model.dart';
+import 'package:bookly_app/features/search/presentation/views/widgets/search_subject_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,5 +1,5 @@
 import 'package:bookly_app/core/utils/app_styles.dart';
-import 'package:bookly_app/features/search/data/presentation/models/search_category_model.dart';
+import 'package:bookly_app/features/search/presentation/models/search_category_model.dart';
 import 'package:flutter/material.dart';
 
 class SearchSubjectItem extends StatelessWidget {

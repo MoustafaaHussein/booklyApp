@@ -40,15 +40,17 @@ class HomeRepoImplementation implements HomeRepo {
     required String category,
   }) async {
     try {
-      List<BooksEntity> books = homeLocalDataSource.fetchFeaturedBooks(
-        category,
-        pageNumber,
-      );
-      if (books.isNotEmpty) {
-        return right(books);
-      }
+      // List<BooksEntity> books = homeLocalDataSource.fetchFeaturedBooks(
+      //   category,
+      //   pageNumber,
+      // );
+      // if (books.isNotEmpty) {
+      //   return right(books);
+      // }
 
-      books = await homeRemoteDataSource.fetchFeaturedBooks(category: category);
+      List<BooksEntity> books = await homeRemoteDataSource.fetchFeaturedBooks(
+        category: category,
+      );
       return right(books);
     } catch (e) {
       if (e is DioException) {

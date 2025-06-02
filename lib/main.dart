@@ -44,8 +44,7 @@ class BooklyApp extends StatelessWidget {
         BlocProvider(
           create:
               (context) =>
-                  FeaturedBooksCubit(getIt.get<FetchFeaturedBooksUseCase>())
-                    ..fetchFeaturedBooks(category: 'sports'),
+                  FeaturedBooksCubit(getIt.get<FetchFeaturedBooksUseCase>()),
         ),
         BlocProvider(
           create:
