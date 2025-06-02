@@ -1,7 +1,6 @@
 import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/utils/app_routes.dart';
 import 'package:bookly_app/core/utils/service_locator.dart';
-import 'package:bookly_app/features/auth/data/presentation/manger/auth_bloc/auth_bloc.dart';
 import 'package:bookly_app/features/home/domain/entities/books_entity.dart';
 import 'package:bookly_app/features/home/domain/use_cases/featch_featured_books_use_case.dart';
 import 'package:bookly_app/features/home/domain/use_cases/fetch_newest_books_use_case.dart';
@@ -51,7 +50,6 @@ class BooklyApp extends StatelessWidget {
               (context) =>
                   NewestBooksCubit(getIt.get<FetchNewestBooksUseCase>()),
         ),
-        BlocProvider(create: (context) => AuthBloc()),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouters.router,

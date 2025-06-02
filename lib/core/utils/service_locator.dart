@@ -5,7 +5,6 @@ import 'package:bookly_app/features/home/data/repos/home_repo_implementation.dar
 import 'package:bookly_app/features/home/domain/use_cases/featch_featured_books_use_case.dart';
 import 'package:bookly_app/features/home/domain/use_cases/fetch_newest_books_use_case.dart';
 import 'package:bookly_app/features/home/domain/use_cases/fetch_similar_books_use_case.dart';
-import 'package:bookly_app/features/search/data/repos/search_repo_implementation.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -41,7 +40,4 @@ void setupServiceLocator() {
   );
 
   // Optional
-  getIt.registerSingleton<SearchRepoImplementation>(
-    SearchRepoImplementation(getIt.get<ApiService>()),
-  );
 }

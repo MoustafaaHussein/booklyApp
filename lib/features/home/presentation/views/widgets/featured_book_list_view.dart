@@ -22,6 +22,9 @@ class _FuturedBookListViewState extends State<FuturedBookListView> {
   @override
   void initState() {
     super.initState();
+    context.read<FeaturedBooksCubit>().fetchFeaturedBooks(
+      category: widget.category,
+    );
     _scrollController.addListener(_onScroll);
   }
 
@@ -39,11 +42,11 @@ class _FuturedBookListViewState extends State<FuturedBookListView> {
       _hasFetchedMore = true;
       context.read<FeaturedBooksCubit>().fetchFeaturedBooks(
         category: widget.category,
+
         pageNumber: nextPage++,
       );
 
       // Optional: reset flag after delay if pagination is supported
-      Future.delayed(const Duration(seconds: 1), () => _hasFetchedMore = false);
     }
   }
 

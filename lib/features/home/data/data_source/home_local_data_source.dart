@@ -3,7 +3,7 @@ import 'package:bookly_app/features/home/domain/entities/books_entity.dart';
 import 'package:hive/hive.dart';
 
 abstract class HomeLocalDataSource {
-  List<BooksEntity> fetchFeaturedBooks([String category, int pageNumber]);
+  List<BooksEntity> fetchFeaturedBooks([String category]);
   List<BooksEntity> fetchNewestBooks();
   List<BooksEntity> fetchSimilarBooks();
 }

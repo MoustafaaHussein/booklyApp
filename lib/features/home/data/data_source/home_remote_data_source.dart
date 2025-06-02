@@ -25,10 +25,11 @@ class HomeRemoteDataSourceImplementation extends HomeRemoteDataSource {
   }) async {
     var data = await apiService.get(
       endPoint:
-          '/volumes?q=title:$category&Filtering=free-ebooks&startIndex=${pageNumber * 10}',
+          '/volumes?q=title:$category&Filtering=free-ebooks&startIndex=${pageNumber * 10}', // page number for pagination as the API returns 10 items per page
+      // you can also use pageNumber * 10 to get the next 10 items
     );
     List<BooksEntity> books = getBooksList(data);
-    saveBooksToLocalStorage(books, kFeaturedBox);
+    saveBooksToLocalStorages(books, kFeaturedBox, category);
     return books;
   }
 
@@ -38,6 +39,7 @@ class HomeRemoteDataSourceImplementation extends HomeRemoteDataSource {
       books.add(BooksModel.fromJson(bookMap));
     }
     return books;
+    // This method converts the JSON data into a list of BooksEntity objects
   }
 
   @override

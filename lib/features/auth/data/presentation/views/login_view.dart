@@ -117,7 +117,7 @@ class LoginView extends StatelessWidget {
                         onPressed: () {
                           GoRouter.of(
                             context,
-                          ).push(AppRouters.kPassowrdResetView);
+                          ).push(AppRouters.kPasswordResetView);
                         },
                         child: const Text(
                           'Can\'t remember password ?',

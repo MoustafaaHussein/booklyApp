@@ -14,13 +14,13 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
+    super.initState();
     BlocProvider.of<FeaturedBooksCubit>(
       context,
     ).fetchFeaturedBooks(category: widget.category);
     BlocProvider.of<NewestBooksCubit>(
       context,
     ).fetchNewestBooks(category: widget.category);
-    super.initState();
   }
 
   @override

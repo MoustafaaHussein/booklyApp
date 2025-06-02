@@ -8,7 +8,8 @@ part 'featured_books_state.dart';
 class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
   FeaturedBooksCubit(this.featuredBooksUseCase) : super(FeaturedBooksInitial());
   final FetchFeaturedBooksUseCase featuredBooksUseCase;
-
+  // This cubit is responsible for managing the state of featured books
+  // It fetches featured books from the use case and emits the appropriate states
   Future<void> fetchFeaturedBooks({
     required String category,
     int pageNumber = 0,

@@ -7,7 +7,7 @@ import 'package:dartz/dartz.dart';
 class FetchFeaturedBooksUseCase
     extends UseCase<List<BooksEntity>, String, int> {
   final HomeRepo homeRepo;
-
+  // This use case is responsible for fetching featured books from the repository this following clean architecture principles
   FetchFeaturedBooksUseCase(this.homeRepo);
 
   @override

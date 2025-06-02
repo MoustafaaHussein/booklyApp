@@ -35,24 +35,27 @@ class HomeRepoImplementation implements HomeRepo {
   }
 
   @override
+  // This method fetches featured books from the remote data source and saves them to the local data source.
   Future<Either<Failure, List<BooksEntity>>> fetchFeaturedBooks({
     int pageNumber = 0,
     required String category,
   }) async {
     try {
-      // List<BooksEntity> books = homeLocalDataSource.fetchFeaturedBooks(
-      //   category,
-      //   pageNumber,
-      // );
-      // if (books.isNotEmpty) {
-      //   return right(books);
-      // }
-
-      List<BooksEntity> books = await homeRemoteDataSource.fetchFeaturedBooks(
-        category: category,
+      // First, try to fetch featured books from the local data source
+      // If the local data source has books, return them
+      List<BooksEntity> books = homeLocalDataSource.fetchFeaturedBooks(
+        category,
       );
+      if (books.isNotEmpty) {
+        return right(books);
+      }
+      // If the local data source is empty, fetch books from the remote data source
+      // and save them to the local data source
+      books = await homeRemoteDataSource.fetchFeaturedBooks(category: category);
       return right(books);
     } catch (e) {
+      // Handle exceptions and return a Failure
+      // If the exception is a DioException, convert it to a ServiceFailure
       if (e is DioException) {
         return left(ServiceFailure.fromDioError(e));
       } else {
