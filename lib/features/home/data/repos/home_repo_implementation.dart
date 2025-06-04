@@ -16,18 +16,28 @@ class HomeRepoImplementation implements HomeRepo {
   @override
   Future<Either<Failure, List<BooksEntity>>> fetchNewestBooks({
     required String category,
+    bool? forceRefresh,
+    int pageNumber = 0,
   }) async {
     try {
-      List<BooksEntity> books = homeLocalDataSource.fetchNewestBooks();
-      if (books.isNotEmpty) {
-        return right(books);
+      // If not explicitly forced to refresh, try loading from local storage first
+      if (!forceRefresh!) {
+        List<BooksEntity> localBooks = homeLocalDataSource.fetchNewestBooks();
+        if (localBooks.isNotEmpty) {
+          return right(localBooks);
+        }
       }
 
-      books = await homeRemoteDataSource.fetchNewestBooks(category: category);
+      // If local data is empty or forceRefresh is true, fetch from remote source
+      final books = await homeRemoteDataSource.fetchNewestBooks(
+        category: category,
+        pageNumber: pageNumber,
+      );
       return right(books);
-    } on Exception catch (e) {
+    } catch (e) {
+      // Catch and wrap errors as a Failure (Dio or general)
       if (e is DioException) {
-        return Left(ServiceFailure.fromDioError(e));
+        return left(ServiceFailure.fromDioError(e));
       } else {
         return Left(ServiceFailure(errorMessage: e.toString()));
       }
@@ -39,19 +49,26 @@ class HomeRepoImplementation implements HomeRepo {
   Future<Either<Failure, List<BooksEntity>>> fetchFeaturedBooks({
     int pageNumber = 0,
     required String category,
+    bool? forceRefresh,
   }) async {
     try {
       // First, try to fetch featured books from the local data source
       // If the local data source has books, return them
-      List<BooksEntity> books = homeLocalDataSource.fetchFeaturedBooks(
-        category,
-      );
-      if (books.isNotEmpty) {
-        return right(books);
+      if (!forceRefresh!) {
+        List<BooksEntity> localBooks = homeLocalDataSource.fetchFeaturedBooks(
+          category: category,
+          pageNumber: 1,
+        );
+        if (localBooks.isNotEmpty) {
+          return right(localBooks);
+        }
       }
       // If the local data source is empty, fetch books from the remote data source
       // and save them to the local data source
-      books = await homeRemoteDataSource.fetchFeaturedBooks(category: category);
+      final books = await homeRemoteDataSource.fetchFeaturedBooks(
+        category: category,
+        pageNumber: pageNumber,
+      );
       return right(books);
     } catch (e) {
       // Handle exceptions and return a Failure

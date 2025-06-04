@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:bookly_app/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
+import 'package:bookly_app/features/home/presentation/manger/newest_books_cubit/newest_books_cubit_cubit.dart';
 import 'package:bookly_app/features/search/presentation/models/search_category_model.dart';
 import 'package:bookly_app/features/search/presentation/views/widgets/search_subject_item.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,14 @@ class SearchSubjectListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return ElevatedButton(
             onPressed: () {
-              BlocProvider.of<FeaturedBooksCubit>(
-                context,
-              ).fetchFeaturedBooks(category: subjectList[index].subject);
+              BlocProvider.of<FeaturedBooksCubit>(context).fetchFeaturedBooks(
+                category: subjectList[index].subject,
+                forceRefresh: true,
+              );
+              BlocProvider.of<NewestBooksCubit>(context).fetchNewestBooks(
+                category: subjectList[index].subject,
+                forceRefresh: true,
+              );
             },
             style: ElevatedButton.styleFrom(
               animationDuration: const Duration(seconds: 1),

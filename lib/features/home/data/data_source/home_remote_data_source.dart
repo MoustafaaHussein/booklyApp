@@ -5,7 +5,10 @@ import 'package:bookly_app/core/utils/saving_data_locally.dart';
 import 'package:bookly_app/features/home/domain/entities/books_entity.dart';
 
 abstract class HomeRemoteDataSource {
-  Future<List<BooksEntity>> fetchNewestBooks({required String category});
+  Future<List<BooksEntity>> fetchNewestBooks({
+    required String category,
+    int pageNumber = 0,
+  });
   Future<List<BooksEntity>> fetchFeaturedBooks({
     required String category,
     int pageNumber = 0,
@@ -43,12 +46,16 @@ class HomeRemoteDataSourceImplementation extends HomeRemoteDataSource {
   }
 
   @override
-  Future<List<BooksEntity>> fetchNewestBooks({required String category}) async {
+  Future<List<BooksEntity>> fetchNewestBooks({
+    required String category,
+    int pageNumber = 0,
+  }) async {
     var data = await apiService.get(
-      endPoint: '/volumes?q=title:$category&Filtering=free-ebooks',
+      endPoint:
+          '/volumes?q=title:$category&Filtering=free-ebooks&startIndex=${pageNumber * 10}',
     );
     List<BooksEntity> books = getBooksList(data);
-    saveBooksToLocalStorage(books, kNewestBox);
+    saveBooksToLocalStorages(books, kNewestBox, category);
     return books;
   }
 
@@ -60,7 +67,7 @@ class HomeRemoteDataSourceImplementation extends HomeRemoteDataSource {
       endPoint: '/volumes?q=subject:$category&Filtering=free-ebooks',
     );
     List<BooksEntity> books = getBooksList(data);
-    saveBooksToLocalStorage(books, kSimilarBox);
+    saveBooksToLocalStorages(books, kSimilarBox, category);
     return books;
   }
 }

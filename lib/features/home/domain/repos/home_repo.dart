@@ -5,10 +5,13 @@ import 'package:dartz/dartz.dart';
 abstract class HomeRepo {
   Future<Either<Failure, List<BooksEntity>>> fetchNewestBooks({
     required String category,
+    int pageNumber = 0,
+    bool forceRefresh = false,
   });
   Future<Either<Failure, List<BooksEntity>>> fetchFeaturedBooks({
     required String category,
     int pageNumber = 0,
+    bool forceRefresh = false,
   });
   Future<Either<Failure, List<BooksEntity>>> fetchSimilarBooks({
     required String category,

@@ -37,10 +37,11 @@ class SearchViewBody extends StatelessWidget {
     if (value.trim().isEmpty) return;
     BlocProvider.of<FeaturedBooksCubit>(
       context,
-    ).fetchFeaturedBooks(category: value);
-    BlocProvider.of<NewestBooksCubit>(
-      context,
-    ).fetchNewestBooks(category: value); // Avoid empty search
+    ).fetchFeaturedBooks(category: value, forceRefresh: true);
+    BlocProvider.of<NewestBooksCubit>(context).fetchNewestBooks(
+      category: value,
+      forceRefresh: true,
+    ); // Avoid empty search
     GoRouter.of(context).push(AppRouters.kHomePath, extra: value);
   }
 }

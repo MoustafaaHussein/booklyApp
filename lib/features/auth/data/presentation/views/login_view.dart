@@ -7,6 +7,8 @@ import 'package:bookly_app/features/auth/data/presentation/views/RegisterationPa
 import 'package:bookly_app/features/auth/data/presentation/views/widgets/CustomButtomWidget.dart';
 import 'package:bookly_app/features/auth/data/presentation/views/widgets/TextFieldWidget.dart';
 import 'package:bookly_app/features/auth/data/presentation/views/widgets/textWidget.dart';
+import 'package:bookly_app/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
+import 'package:bookly_app/features/home/presentation/manger/newest_books_cubit/newest_books_cubit_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,6 +36,13 @@ class LoginView extends StatelessWidget {
           showStatusMessage(context, state.errorMessage);
         } else if (state is LoginSuccess) {
           isLoading = false;
+          BlocProvider.of<FeaturedBooksCubit>(
+            context,
+          ).fetchFeaturedBooks(category: 'sports', forceRefresh: true);
+          BlocProvider.of<NewestBooksCubit>(
+            context,
+          ).fetchNewestBooks(category: 'sports');
+
           GoRouter.of(context).push(AppRouters.kHomePath);
         }
       },

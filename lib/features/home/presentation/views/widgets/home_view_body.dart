@@ -29,10 +29,10 @@ class HomeViewBody extends StatelessWidget {
               ],
             ),
           ),
-          const SliverFillRemaining(
+          SliverFillRemaining(
             child: Padding(
-              padding: EdgeInsets.only(bottom: 20),
-              child: NewestBooksListView(),
+              padding: const EdgeInsets.only(bottom: 20),
+              child: NewestBooksListView(category: category),
             ),
           ),
         ],

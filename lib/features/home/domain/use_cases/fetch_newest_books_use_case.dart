@@ -12,7 +12,12 @@ class FetchNewestBooksUseCase extends UseCase<List<BooksEntity>, String, int> {
   Future<Either<Failure, List<BooksEntity>>> call([
     String? category,
     int pageNumber = 0,
+    bool forceRefresh = false,
   ]) async {
-    return await homeRepo.fetchNewestBooks(category: category!);
+    return await homeRepo.fetchNewestBooks(
+      category: category!,
+      pageNumber: pageNumber,
+      forceRefresh: forceRefresh,
+    );
   }
 }

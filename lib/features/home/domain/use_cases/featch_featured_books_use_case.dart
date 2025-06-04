@@ -14,10 +14,12 @@ class FetchFeaturedBooksUseCase
   Future<Either<Failure, List<BooksEntity>>> call([
     String? category,
     int pageNumber = 0,
+    bool forceRefresh = false,
   ]) async {
     return await homeRepo.fetchFeaturedBooks(
       category: category!,
       pageNumber: pageNumber,
+      forceRefresh: forceRefresh,
     );
   }
 }

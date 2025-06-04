@@ -5,8 +5,49 @@ import 'package:bookly_app/features/home/presentation/views/widgets/customized_l
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NewestBooksListView extends StatelessWidget {
-  const NewestBooksListView({super.key});
+class NewestBooksListView extends StatefulWidget {
+  const NewestBooksListView({super.key, required this.category});
+  final String category;
+
+  @override
+  State<NewestBooksListView> createState() => _NewestBooksListViewState();
+}
+
+class _NewestBooksListViewState extends State<NewestBooksListView> {
+  final ScrollController _scrollController = ScrollController();
+  var nextPage = 1;
+  bool _hasFetchedMore = false;
+  @override
+  void initState() {
+    super.initState();
+    context.read<NewestBooksCubit>().fetchNewestBooks(
+      category: widget.category,
+      forceRefresh: true,
+    );
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() async {
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+
+    if (!_hasFetchedMore && currentScroll >= 0.7 * maxScroll) {
+      _hasFetchedMore = true;
+      context.read<NewestBooksCubit>().fetchNewestBooks(
+        category: widget.category,
+        forceRefresh: true,
+        pageNumber: nextPage++,
+      );
+
+      // Optional: reset flag after delay if pagination is supported
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +55,6 @@ class NewestBooksListView extends StatelessWidget {
       builder: (context, state) {
         if (state is NewestBooksSuccess) {
           return ListView.builder(
-            /* physics: const NeverScrollableScrollPhysics(), */
             padding: EdgeInsets.zero,
             itemCount: state.books.length,
             itemBuilder: (context, index) {

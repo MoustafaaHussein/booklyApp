@@ -11,9 +11,17 @@ class NewestBooksCubit extends Cubit<NewestBooksState> {
 
   final FetchNewestBooksUseCase fetchNewestBooksUseCase;
 
-  void fetchNewestBooks({required String category}) async {
+  void fetchNewestBooks({
+    required String category,
+    bool forceRefresh = false,
+    int pageNumber = 0,
+  }) async {
     emit(NewestBooksLoading());
-    var result = await fetchNewestBooksUseCase.call(category);
+    var result = await fetchNewestBooksUseCase.call(
+      category,
+      pageNumber,
+      forceRefresh,
+    );
 
     result.fold(
       (failure) {

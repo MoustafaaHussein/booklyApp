@@ -24,6 +24,7 @@ class _FuturedBookListViewState extends State<FuturedBookListView> {
     super.initState();
     context.read<FeaturedBooksCubit>().fetchFeaturedBooks(
       category: widget.category,
+      forceRefresh: true,
     );
     _scrollController.addListener(_onScroll);
   }
@@ -34,15 +35,15 @@ class _FuturedBookListViewState extends State<FuturedBookListView> {
     super.dispose();
   }
 
-  void _onScroll() {
+  void _onScroll() async {
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.position.pixels;
 
     if (!_hasFetchedMore && currentScroll >= 0.7 * maxScroll) {
       _hasFetchedMore = true;
-      context.read<FeaturedBooksCubit>().fetchFeaturedBooks(
+      await context.read<FeaturedBooksCubit>().fetchFeaturedBooks(
         category: widget.category,
-
+        forceRefresh: true,
         pageNumber: nextPage++,
       );
 

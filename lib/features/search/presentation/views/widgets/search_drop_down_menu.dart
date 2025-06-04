@@ -23,9 +23,10 @@ class SearchSubjectDropDownMenuState extends State<SearchSubjectDropDownMenu> {
         onChanged: (SearchCategoryModel? newValue) {
           setState(() {
             selectedSubject = newValue;
-            BlocProvider.of<FeaturedBooksCubit>(
-              context,
-            ).fetchFeaturedBooks(category: newValue!.subject);
+            BlocProvider.of<FeaturedBooksCubit>(context).fetchFeaturedBooks(
+              category: newValue!.subject,
+              forceRefresh: true,
+            );
             BlocProvider.of<NewestBooksCubit>(
               context,
             ).fetchNewestBooks(category: newValue.subject);
