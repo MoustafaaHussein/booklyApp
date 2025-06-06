@@ -1,20 +1,20 @@
-import 'package:bookly_app/core/utils/app_routes.dart';
+import 'package:bookly_app/features/home/domain/entities/books_entity.dart';
 import 'package:bookly_app/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
-import 'package:bookly_app/features/home/presentation/views/widgets/book_cover.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/customized_error_message.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/customized_loading_indicator.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/featured_books_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
-class FuturedBookListView extends StatefulWidget {
-  const FuturedBookListView({super.key, required this.category});
+class FuturedBookListViewBloc extends StatefulWidget {
+  const FuturedBookListViewBloc({super.key, required this.category});
   final String category;
   @override
-  State<FuturedBookListView> createState() => _FuturedBookListViewState();
+  State<FuturedBookListViewBloc> createState() =>
+      _FuturedBookListViewBlocState();
 }
 
-class _FuturedBookListViewState extends State<FuturedBookListView> {
+class _FuturedBookListViewBlocState extends State<FuturedBookListViewBloc> {
   final ScrollController _scrollController = ScrollController();
   var nextPage = 1;
   bool _hasFetchedMore = false;
@@ -51,32 +51,21 @@ class _FuturedBookListViewState extends State<FuturedBookListView> {
     }
   }
 
+  List<BooksEntity> books = [];
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
-      builder: (context, state) {
+    return BlocConsumer<FeaturedBooksCubit, FeaturedBooksState>(
+      listener: (context, state) {
         if (state is FeaturedBooksSuccess) {
-          return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
-            child: ListView.builder(
-              controller: _scrollController,
-              itemCount: state.books.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 8.0, top: 8, bottom: 8),
-                  child: GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push(
-                        AppRouters.kDetailedBookView,
-                        extra: state.books[index],
-                      );
-                    },
-                    child: BookCover(imageURl: state.books[index].image),
-                  ),
-                );
-              },
-            ),
+          books.addAll(state.books);
+        }
+      },
+      builder: (context, state) {
+        if (state is FeaturedBooksSuccess ||
+            state is FeaturedBooksPaginationLoading) {
+          return FeaturedBooksListView(
+            scrollController: _scrollController,
+            books: books,
           );
         } else if (state is FeaturedBooksFailure) {
           return CustomizedErrorMessage(errorMessage: state.errorMessage);

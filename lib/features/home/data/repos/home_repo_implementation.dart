@@ -22,7 +22,10 @@ class HomeRepoImplementation implements HomeRepo {
     try {
       // If not explicitly forced to refresh, try loading from local storage first
       if (!forceRefresh!) {
-        List<BooksEntity> localBooks = homeLocalDataSource.fetchNewestBooks();
+        List<BooksEntity> localBooks = homeLocalDataSource.fetchNewestBooks(
+          category: category,
+          pageNumber: 1,
+        );
         if (localBooks.isNotEmpty) {
           return right(localBooks);
         }
@@ -31,7 +34,7 @@ class HomeRepoImplementation implements HomeRepo {
       // If local data is empty or forceRefresh is true, fetch from remote source
       final books = await homeRemoteDataSource.fetchNewestBooks(
         category: category,
-        pageNumber: pageNumber,
+        pageNumber: 1,
       );
       return right(books);
     } catch (e) {

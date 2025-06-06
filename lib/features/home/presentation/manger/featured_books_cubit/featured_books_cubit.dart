@@ -15,7 +15,11 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
     int pageNumber = 0,
     bool forceRefresh = false,
   }) async {
-    emit(FeaturedBooksLoading());
+    if (pageNumber == 1) {
+      emit(FeaturedBooksLoading());
+    } else {
+      emit(FeaturedBooksPaginationLoading());
+    }
     var result = await featuredBooksUseCase.call(
       category,
       pageNumber,

@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BooksListBody extends StatelessWidget {
-  const BooksListBody({super.key, required this.items});
+  const BooksListBody({super.key, required this.books});
 
-  final BooksEntity items;
+  final BooksEntity books;
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,13 @@ class BooksListBody extends StatelessWidget {
       onTap:
           () => GoRouter.of(
             context,
-          ).push(AppRouters.kDetailedBookView, extra: items),
+          ).push(AppRouters.kDetailedBookView, extra: books),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
         height: 125,
         child: Row(
           children: [
-            BookCover(imageURl: items.image),
-
+            BookCover(imageURl: books.image),
             const SizedBox(width: 30),
             Expanded(
               child: Column(
@@ -36,7 +35,7 @@ class BooksListBody extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       softWrap: true,
                       maxLines: 2,
-                      items.title,
+                      books.title,
                       style: AppStyles.styleRegular20(
                         context,
                       ).copyWith(fontWeight: FontWeight.bold),
@@ -44,7 +43,7 @@ class BooksListBody extends StatelessWidget {
                   ),
                   FittedBox(
                     child: Text(
-                      items.author,
+                      books.author,
                       style: AppStyles.styleMedium14(
                         context,
                       ).copyWith(fontSize: 16, color: const Color(0xff97959E)),

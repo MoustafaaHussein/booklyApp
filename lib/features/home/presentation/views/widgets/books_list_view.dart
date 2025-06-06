@@ -22,7 +22,6 @@ class _NewestBooksListViewState extends State<NewestBooksListView> {
     super.initState();
     context.read<NewestBooksCubit>().fetchNewestBooks(
       category: widget.category,
-      forceRefresh: true,
     );
     _scrollController.addListener(_onScroll);
   }
@@ -58,7 +57,7 @@ class _NewestBooksListViewState extends State<NewestBooksListView> {
             padding: EdgeInsets.zero,
             itemCount: state.books.length,
             itemBuilder: (context, index) {
-              return BooksListBody(items: state.books[index]);
+              return BooksListBody(books: state.books[index]);
             },
           );
         } else if (state is NewestBooksFailure) {
